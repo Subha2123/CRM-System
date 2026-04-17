@@ -1,14 +1,16 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CustomerModule } from './customer/customer.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://Subhashini:root04@cluster0.yrxfb3a.mongodb.net/portal?retryWrites=true&w=majority',
-    ),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    MongooseModule.forRoot(process.env.MONGO_URI),
     CustomerModule,
   ],
   controllers: [AppController],
