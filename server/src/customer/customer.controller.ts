@@ -12,6 +12,7 @@ import {
 import { CustomerService } from './customer.service';
 import { JwtAuthGuard } from 'src/auth/auth-gaurd';
 import { CreateCustomerDto } from './dto/create-customer.dto';
+import { CurrentUser } from 'src/common/current-user.decorator';
 
 @UseGuards(JwtAuthGuard)
 @Controller('customers')
@@ -19,8 +20,11 @@ export class CustomerController {
   constructor(private readonly service: CustomerService) {}
 
   @Post()
-  create(@Body() body: CreateCustomerDto) {
-    return this.service.create(body);
+  create(
+    @Body() body: CreateCustomerDto,
+    @CurrentUser('userId') userId: string,
+  ) {
+    return this.service.create(body, userId);
   }
 
   @Get()
@@ -29,13 +33,17 @@ export class CustomerController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() body: any) {
-    return this.service.update(id, body);
+  update(
+    @Param('id') id: string,
+    @Body() body: any,
+    @CurrentUser('userId') userId: string,
+  ) {
+    return this.service.update(id, body, userId);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.service.delete(id);
+  remove(@Param('id') id: string, @CurrentUser('userId') userId: string) {
+    return this.service.delete(id, userId);
   }
 
   @Get('dashboard')

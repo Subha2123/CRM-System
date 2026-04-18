@@ -23,7 +23,7 @@ export class AuthService {
     return { message: 'User created', user };
   }
 
-  async login(data: any) {
+  async login(data: {email : string , password: string} ) {
     const user = await this.usersService.findByEmail(data.email);
 
     if (!user) throw new UnauthorizedException('Invalid credentials');
@@ -33,8 +33,15 @@ export class AuthService {
 
     const payload = { sub: user._id, email: user.email };
 
+    const token=this.jwtService.sign(payload)
+
     return {
-      access_token: this.jwtService.sign(payload),
+      token,
+      user:{
+         _id:user._id,
+         name:user?.name,
+         email:user.email
+      },
     };
   }
 }
