@@ -1,0 +1,316 @@
+{
+  "info": {
+    "_postman_id": "b4ffe41e-c468-48c4-bf54-822375ada7a2",
+    "name": "CRM-App",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "19872864"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "Signup",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\":\"subhashini\",\n    \"email\": \"subhashinirbca@gmail.com\",\n    \"password\": \"subha123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/auth/signup",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "auth",
+                "signup"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "SignIn",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"subhashinirbca@gmail.com\",\n    \"password\": \"subha123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Customer",
+      "item": [
+        {
+          "name": "Create customer",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OWUzMTk0ZmI1YTc2NDdjMjRkMmEzYzciLCJlbWFpbCI6InN1Ymhhc2hpbmlyYmNhQGdtYWlsLmNvbSIsImlhdCI6MTc3NjQ5MTk1MCwiZXhwIjoxNzc2NTc4MzUwfQ.VgQHdseIktzGL946kKDwxO8T-8oWMv8ANlz92XTpPNA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Test Customer Active\",\n    \"email\": \"subhashinirbca90@gmail.com\",\n    \"company\": \"Test company\",\n    \"phone\": \"1264657567\",\n    \"status\":\"Active\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/customers/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "customers",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Customer",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OWUzMTk0ZmI1YTc2NDdjMjRkMmEzYzciLCJlbWFpbCI6InN1Ymhhc2hpbmlyYmNhQGdtYWlsLmNvbSIsImlhdCI6MTc3NjU5Mjc2NSwiZXhwIjoxNzc2Njc5MTY1fQ.aXT8Aj1kffi0UHAmt6rVUhb6lx7K_G8ybqUGh-swO2U",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Test Customer Active edited\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/customers/69e3ac3a2e10473f80231da1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "customers",
+                "69e3ac3a2e10473f80231da1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete customer",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OWUzMTk0ZmI1YTc2NDdjMjRkMmEzYzciLCJlbWFpbCI6InN1Ymhhc2hpbmlyYmNhQGdtYWlsLmNvbSIsImlhdCI6MTc3NjU5Mjc2NSwiZXhwIjoxNzc2Njc5MTY1fQ.aXT8Aj1kffi0UHAmt6rVUhb6lx7K_G8ybqUGh-swO2U",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Test Customer Active edited\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/customers/69e3ac3a2e10473f80231da1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "customers",
+                "69e3ac3a2e10473f80231da1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OWUzMTk0ZmI1YTc2NDdjMjRkMmEzYzciLCJlbWFpbCI6InN1Ymhhc2hpbmlyYmNhQGdtYWlsLmNvbSIsImlhdCI6MTc3NjQ5MTk1MCwiZXhwIjoxNzc2NTc4MzUwfQ.VgQHdseIktzGL946kKDwxO8T-8oWMv8ANlz92XTpPNA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/customers/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "customers",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "test",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "Lead",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Dashboard Data",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OWUzMTk0ZmI1YTc2NDdjMjRkMmEzYzciLCJlbWFpbCI6InN1Ymhhc2hpbmlyYmNhQGdtYWlsLmNvbSIsImlhdCI6MTc3NjU5Mjc2NSwiZXhwIjoxNzc2Njc5MTY1fQ.aXT8Aj1kffi0UHAmt6rVUhb6lx7K_G8ybqUGh-swO2U",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/customers/dashboard",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "customers",
+                "dashboard"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "Active",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Activity Logs",
+      "item": [
+        {
+          "name": "Get Logs",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OWUzMTk0ZmI1YTc2NDdjMjRkMmEzYzciLCJlbWFpbCI6InN1Ymhhc2hpbmlyYmNhQGdtYWlsLmNvbSIsImlhdCI6MTc3NjU5Mjc2NSwiZXhwIjoxNzc2Njc5MTY1fQ.aXT8Aj1kffi0UHAmt6rVUhb6lx7K_G8ybqUGh-swO2U",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/activity/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "activity",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "Active",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
