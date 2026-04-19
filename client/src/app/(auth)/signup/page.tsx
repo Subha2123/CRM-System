@@ -5,6 +5,14 @@ import { authService } from "@/src/services/auth";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+interface ErrorObj {
+  name?:string;
+  email?: string;
+  password?: string;
+  api?: string;
+}
+
+
 export default function SignupPage() {
   const router = useRouter();
   const [form, setForm] = useState({
@@ -13,7 +21,7 @@ export default function SignupPage() {
     password: "",
   });
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<ErrorObj>({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -25,7 +33,7 @@ export default function SignupPage() {
   };
 
   const validate = () => {
-    let newErrors = {};
+    const newErrors:ErrorObj = {};
     if (!form.name) newErrors.name = "Name is required";
     if (!form.email.includes("@")) newErrors.email = "Valid email required";
     if (form.password.length < 6)
@@ -49,7 +57,9 @@ export default function SignupPage() {
       setForm({ name: "", email: "", password: "" });
       router.push('/signin')
     } catch (err: unknown) {
-      setErrors({ api: err?.message });
+       const message =
+        err instanceof Error ? err.message : "Something went wrong";
+      setErrors({ api: message });
     } finally {
       setLoading(false);
     }

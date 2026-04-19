@@ -5,6 +5,12 @@ import { useRouter } from "next/navigation";
 import { authService } from "@/src/services/auth";
 import { Eyeoff, EyeVisible } from "@/src/components/Icons";
 
+interface ErrorObj {
+  email?: string;
+  password?: string;
+  api?: string;
+}
+
 export default function LoginPage() {
   const router = useRouter();
 
@@ -13,7 +19,7 @@ export default function LoginPage() {
     password: "",
   });
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<ErrorObj>({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -25,7 +31,7 @@ export default function LoginPage() {
   };
 
   const validate = () => {
-    let newErrors = {};
+    const newErrors: ErrorObj = {};
 
     if (!form.email.includes("@")) newErrors.email = "Valid email required";
     if (!form.password) newErrors.password = "Password is required";
@@ -51,7 +57,10 @@ export default function LoginPage() {
       setForm({ email: "", password: "" });
       router.push("/dashboard");
     } catch (err: unknown) {
-      setErrors({ api: err?.message });
+      const message =
+        err instanceof Error ? err.message : "Something went wrong";
+
+      setErrors({ api: message });
     } finally {
       setLoading(false);
     }

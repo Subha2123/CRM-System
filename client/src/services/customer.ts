@@ -12,7 +12,7 @@ export const customerService = {
     return apiClient.post('/customers', data);
   },
 
-  updateCustomer(id: string, data: any) {
+  updateCustomer(id: string | null, data: any) {
     return apiClient.put(`/customers/${id}`, data);
   },
 

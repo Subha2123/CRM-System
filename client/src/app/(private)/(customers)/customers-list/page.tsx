@@ -15,7 +15,9 @@ type Customer = {
   status: string;
 };
 
-
+interface RequestParams{
+  search?: string; status?: string 
+}
 
 export default function CustomersPage() {
   const router = useRouter();
@@ -44,10 +46,12 @@ export default function CustomersPage() {
         if (debouncedSearch) params.append("search", debouncedSearch);
         if (status) params.append("status", status);
 
-        const res = await customerService.getCustomers(params);
+        const res = await customerService.getCustomers(params as RequestParams);
         setCustomers(res.data);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err: unknown) {
+         const message =
+        err instanceof Error ? err.message : "Something went wrong";
+        setError(message)
       } finally {
         setLoading(false);
       }
