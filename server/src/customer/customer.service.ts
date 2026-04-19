@@ -50,9 +50,17 @@ export class CustomerService {
       filter.status = query.status;
     }
 
+    const projection: any = {
+      name: 1,
+      email: 1,
+      phone: 1,
+      company: 1,
+      status: 1,
+      createdAt: 1,
+    };
+
     return this.customerModel
-      .find(filter)
-      .select('name email phone company status createdDate')
+      .find(filter, projection)
       .sort({ createdAt: -1 })
       .lean();
   }

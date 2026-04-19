@@ -37,3 +37,8 @@ export class Customer {
 }
 
 export const CustomerSchema = SchemaFactory.createForClass(Customer);
+
+CustomerSchema.index({ name: 1 });
+CustomerSchema.index({ email: 1 });
+
+CustomerSchema.index({ is_active: 1, status: 1, createdAt: -1 });
